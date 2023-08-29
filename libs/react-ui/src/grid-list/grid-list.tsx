@@ -71,7 +71,7 @@ export const GridList = () => {
         }
       } else if (selectedFlavourList.length === 1) {
         const { l } = hexToHSL(selectedFlavourList[0].textColour || '')
-        console.log(l)
+
         return {
           '--bg-color': selectedFlavourList[0].textColour,
           '--border-color': selectedFlavourList[0].textColour,
@@ -120,7 +120,7 @@ export const GridList = () => {
   }
 
   // Reference to the controlled DOM element
-  // const controlledElement = document.querySelector('.accessible-filter__side')
+  const controlledElement = document.querySelector('.accessible-filter__side')
 
   return (
     <>
@@ -157,14 +157,16 @@ export const GridList = () => {
         </SGridListContent>
       </SGridList>
 
-      {/* {controlledElement &&
+      {controlledElement &&
         createPortal(
           // The JSX you want to render inside the controlled DOM element
           <SFilter>
             <STitleWrapper>
               <STitle as="label" htmlFor="use-profile">
-                Use my flavour profile
+                {filter.profileToggleLabel}
               </STitle>
+
+              {/* <div>{filter.profileToggleDescription}</div> */}
 
               <Toggle
                 id="use-profile"
@@ -197,7 +199,7 @@ export const GridList = () => {
             <FilterList {...sort} onChange={onFilterChange} />
           </SFilter>,
           controlledElement,
-        )} */}
+        )}
     </>
   )
 }
