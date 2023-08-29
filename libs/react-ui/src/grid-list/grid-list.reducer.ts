@@ -80,28 +80,38 @@ export const gridListReducer = (state = initialValue, action: any) => {
       return newState
 
     case C.GRID_LIST_CHANGE_CHECKBOX:
-      newState.filter[whichFilter][action.parsedKey].list = newState.filter[
-        whichFilter
-      ][action.parsedKey].list.map((checkbox) =>
-        checkbox.dataId === +action.dataId
-          ? {
-              ...checkbox,
-              checked: !checkbox.checked,
-            }
-          : checkbox,
-      )
+      if (whichFilter === 'profileOff') {
+        newState.filter[whichFilter][action.parsedKey].list = newState.filter[
+          whichFilter
+        ][action.parsedKey].list.map((checkbox) =>
+          checkbox.dataId === +action.dataId
+            ? {
+                ...checkbox,
+                checked: !checkbox.checked,
+              }
+            : checkbox,
+        )
+      } else {
+        newState.profileOn = false
+      }
+
       return newState
 
     case C.GRID_LIST_CHANGE_FLAVOUR:
-      newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
-        (flavour) =>
-          flavour.dataId === action.dataId
-            ? { ...flavour, checked: !flavour.checked }
-            : flavour,
-      )
-      newState.flavour.profileOff.selected = getSelected(
-        newState.flavour.profileOff.list,
-      )
+      if (whichFilter === 'profileOff') {
+        newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
+          (flavour) =>
+            flavour.dataId === action.dataId
+              ? { ...flavour, checked: !flavour.checked }
+              : flavour,
+        )
+        newState.flavour.profileOff.selected = getSelected(
+          newState.flavour.profileOff.list,
+        )
+      } else {
+        newState.profileOn = false
+      }
+
       return newState
 
     case C.GRID_LIST_RESET_FLAVOUR:
