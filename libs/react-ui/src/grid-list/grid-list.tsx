@@ -23,7 +23,16 @@ import { Toggle } from '../toggle'
 
 export const GridList = () => {
   const [state, dispatch] = useReducer(gridListReducer, initialValue)
-  const { flavour, initialized, config, filter, sort, profileOn } = state
+  const {
+    flavour,
+    initialized,
+    config,
+    filter,
+    sort,
+    profileOn,
+    lastUpdate,
+    postURL,
+  } = state
   const whichFilter = profileOn ? 'profileOn' : 'profileOff'
   const { selected: selectedFlavourList = [] } = flavour[whichFilter]
 
@@ -32,6 +41,57 @@ export const GridList = () => {
       dispatch(A.actionInitFlavour())
     }
   }, [initialized])
+
+  useEffect(() => {
+    if (lastUpdate > 0) {
+      console.log('FETCH data')
+      const dataMap = {
+        pageId: config.pageid,
+        source: config.source,
+        taxonomyProfile: config.profile,
+        documentTypes: config.type,
+        filters: JSON.stringify(
+          filter[whichFilter].map((el) => ({
+            taxonomy: el.dataId,
+            values: el.list
+              .filter(({ checked }) => checked)
+              .map(({ dataId }) => dataId),
+          })),
+        ),
+        sort: sort.list.find(({ checked }) => checked)?.dataId,
+        pageNumber:
+          document.querySelectorAll('.grid-list__wrapper').length + 1 || 1,
+      }
+
+      console.log('dataMap', dataMap)
+      try {
+        fetch(postURL, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(dataMap),
+        })
+          .then((res) => {
+            return res.text()
+          })
+          .then((htmlResponse) => {
+            document
+              .querySelector('.grid-list__wrapper .results-summary')
+              ?.remove()
+            document
+              .querySelector('.grid-list__wrapper .paging-container')
+              ?.remove()
+
+            document
+              .querySelector('.accessible-filter__grid-list')
+              ?.insertAdjacentHTML('beforeend', htmlResponse)
+          })
+      } catch (error: any) {
+        console.log('Error: ', error?.message)
+      }
+    }
+  }, [lastUpdate])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const dataId = (e.target as HTMLInputElement).dataset.id

@@ -54,12 +54,14 @@ type TGridList = {
     profileOff: TFilterList[]
   }
   sort: TFilterList
+  lastUpdate: number
 }
 
 export const initialValue: TGridList = {
   ...(window as any).gridList,
   lastFocused: 'flavour-selector-1',
   selectedFlavourList: [],
+  lastUpdate: 0,
 }
 
 const getSelected = (list: TGridListFlavour[]) =>
@@ -72,6 +74,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
   switch (action.type) {
     case C.GRID_LIST_TOGGLE_PROFILE:
       newState.profileOn = !newState.profileOn
+      newState.lastUpdate = newState.lastUpdate + 1
       return newState
 
     case C.GRID_LIST_CHANGE_RADIO:
@@ -79,6 +82,8 @@ export const gridListReducer = (state = initialValue, action: any) => {
         ...radio,
         checked: radio.dataId === action.dataId,
       }))
+      newState.lastUpdate = newState.lastUpdate + 1
+
       return newState
 
     case C.GRID_LIST_CHANGE_CHECKBOX:
@@ -96,6 +101,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
       } else {
         newState.profileOn = false
       }
+      newState.lastUpdate = newState.lastUpdate + 1
 
       return newState
 
@@ -113,6 +119,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
       } else {
         newState.profileOn = false
       }
+      newState.lastUpdate = newState.lastUpdate + 1
 
       return newState
 
@@ -124,6 +131,8 @@ export const gridListReducer = (state = initialValue, action: any) => {
           checked: false,
         }),
       )
+      newState.lastUpdate = newState.lastUpdate + 1
+
       return newState
 
     case C.GRID_LIST_INIT:
@@ -134,6 +143,8 @@ export const gridListReducer = (state = initialValue, action: any) => {
         newState.flavour.profileOn.list,
       )
       newState.initialized = true
+      newState.lastUpdate = newState.lastUpdate + 1
+
       return newState
 
     default:
