@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from 'react'
 import type { ChangeEvent } from 'react'
 import {
+  SChevron,
   SFilter,
   SGridBackground,
   SGridList,
@@ -161,11 +162,23 @@ export const GridList = () => {
           // The JSX you want to render inside the controlled DOM element
           <SFilter>
             <STitleWrapper>
-              <STitle>Use my flavour profile</STitle>
-              <Toggle checked={profileOn} onChange={onProfileChange} />
+              <STitle as="label" htmlFor="use-profile">
+                Use my flavour profile
+              </STitle>
+
+              <Toggle
+                id="use-profile"
+                checked={profileOn}
+                onChange={onProfileChange}
+              />
             </STitleWrapper>
 
-            <div>Filter</div>
+            <SInput type="checkbox" id="toggle-filter" />
+            <STitle as="label" htmlFor="toggle-filter">
+              Filter
+              <SChevron $checked={profileOn} />
+            </STitle>
+
             {filter[whichFilter].map(
               ({ dataId, label, list, type, name }, key) => (
                 <FilterList

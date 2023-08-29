@@ -6,6 +6,7 @@ export type TToggleBase = {
 
 export type TToggle = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  id?: string
 } & TToggleBase
 
 export type $TToggle = {
