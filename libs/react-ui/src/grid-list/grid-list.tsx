@@ -63,7 +63,10 @@ export const GridList = () => {
           document.querySelectorAll('.grid-list__wrapper').length + 1 || 1,
       }
 
-      console.log('dataMap', dataMap)
+      console.log(
+        'dataMap !!!!! it is getting there, almost ready for demo',
+        dataMap,
+      )
       try {
         fetch(postURL, {
           method: 'post',
