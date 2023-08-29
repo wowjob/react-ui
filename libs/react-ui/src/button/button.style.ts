@@ -18,6 +18,6 @@ export const SButton = styled.button<$TButton>`
     'fill' === $theme ? 'var(--black)' : 'transparent'};
 
   @media screen and (min-width: 48rem) {
-    width: 30rem;
+    width: 15rem;
   }
 `

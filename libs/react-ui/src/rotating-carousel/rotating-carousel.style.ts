@@ -35,8 +35,8 @@ export const SAction = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding-inline: 1rem;
-  padding-top: 9rem;
+  padding-inline: 2rem;
+  padding-top: 7rem;
   color: var(--text-color, var(--black));
 `
 
@@ -55,6 +55,7 @@ export const SContent = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  background-image: linear-gradient(to bottom, rgba(252, 245, 222, 0), #fcf5df);
 `
 
 export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
