@@ -174,9 +174,50 @@
             ],
           },
         },
+        filter: [
+          {
+            dataId: 12345,
+            label: 'Characteristics',
+            type: 'checkbox',
+            list: [
+              { checked: false, dataId: 23555, label: 'fizzy' },
+              { checked: true, dataId: 23666, label: 'warm' },
+              { checked: false, dataId: 23777, label: 'tall' },
+              { checked: true, dataId: 23888, label: 'desert' },
+            ],
+          },
+          {
+            dataId: 56789,
+            label: 'Colour',
+            type: 'checkbox',
+            list: [
+              { checked: false, dataId: 56555, label: 'red' },
+              { checked: false, dataId: 56666, label: 'brown' },
+              { checked: true, dataId: 56777, label: 'orange' },
+              { checked: false, dataId: 56888, label: 'black' },
+            ],
+          },
+        ],
+        sort: {
+          dataId: 56789,
+          label: 'Sort by',
+          type: 'radio',
+          list: [
+            { checked: false, dataId: 'AZ', label: 'A-Z' },
+            { checked: false, dataId: 'ZA', label: 'Z-A' },
+            { checked: false, dataId: 'Latest', label: 'latest' },
+            { checked: true, dataId: 'MostPopular', label: 'Most popular' },
+          ],
+        },
       }
     </script>
-    <div id="grid-list"></div>
+    <div class="accessible-filter">
+      <div id="grid-list"></div>
+      <div class="accessible-filter__main">
+        <div class="accessible-filter__side"></div>
+        <div class="accessible-filter__grid-list"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

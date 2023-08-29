@@ -5,6 +5,23 @@ const actionChangeFlavour = (dataId: number) => ({
   dataId,
 })
 
+const actionChangeCheckbox = (
+  dataId: number | string,
+  name: string | number,
+  parsedKey?: number,
+) => ({
+  type: C.GRID_LIST_CHANGE_CHECKBOX,
+  dataId,
+  name,
+  parsedKey,
+})
+
+const actionChangeRadio = (dataId: number | string, name: string | number) => ({
+  type: C.GRID_LIST_CHANGE_RADIO,
+  dataId,
+  name,
+})
+
 const actionResetFlavour = () => ({
   type: C.GRID_LIST_RESET_FLAVOUR,
 })
@@ -17,4 +34,6 @@ export const A = {
   actionResetFlavour,
   actionChangeFlavour,
   actionInitFlavour,
+  actionChangeCheckbox,
+  actionChangeRadio,
 }

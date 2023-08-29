@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from 'react'
 import type { ChangeEvent } from 'react'
 import {
+  SFilter,
   SGridBackground,
   SGridList,
   SGridListContent,
@@ -13,10 +14,12 @@ import {
 import { gridListReducer, initialValue } from './grid-list.reducer'
 import { A } from './grid-list.action'
 import { hexToHSL } from '@af/util'
+import { createPortal } from 'react-dom'
+import { FilterList } from '../filter-list'
 
 export const GridList = () => {
   const [state, dispatch] = useReducer(gridListReducer, initialValue)
-  const { flavour, initialized, config } = state
+  const { flavour, initialized, config, filter, sort } = state
   const { selected: selectedFlavourList = [] } = flavour.profileOff
 
   useEffect(() => {
@@ -33,6 +36,20 @@ export const GridList = () => {
         ? A.actionResetFlavour()
         : A.actionChangeFlavour(+(dataId || 0)),
     )
+  }
+
+  const onFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const dataId = (e.target as HTMLInputElement).dataset.id
+    const { name, type } = e.target as HTMLInputElement
+    console.log(dataId, name, type)
+    const parsedName = +name.split('-')[1]
+    const parsedKey = +name.split('-')[3]
+
+    if (type === 'checkbox') {
+      dispatch(A.actionChangeCheckbox(dataId || 0, parsedName, parsedKey))
+    } else if (type === 'radio') {
+      dispatch(A.actionChangeRadio(dataId || '', parsedName))
+    }
   }
 
   const getCSSColour = () => {
@@ -93,39 +110,65 @@ export const GridList = () => {
     }
   }
 
-  return (
-    <SGridList style={getCSSColour() as any}>
-      <SGridBackground style={getBackground() as any} />
+  // Reference to the controlled DOM element
+  const controlledElement = document.querySelector('.accessible-filter__side')
 
-      <SGridListContent>
-        <SGridTitle>{getTitle()}</SGridTitle>
-        <SMainCheckboxWrapper>
-          <SMainCheckbox>
-            <SLabel $hightlight={selectedFlavourList.length === 0}>
-              <SInput onChange={onChange} type="checkbox" data-id="all" />
-              <span>ALL</span>
-            </SLabel>
-            {flavour.profileOff.list.map(
-              ({ onFocus, checked, dataId, id, textColour, label }) => (
-                <SLabel
-                  key={dataId}
-                  htmlFor={`flavour-${dataId}`}
-                  $checked={checked}
-                >
-                  <SInput
-                    onChange={onChange}
-                    id={`flavour-${dataId}`}
-                    type="checkbox"
-                    data-id={dataId}
-                    checked={checked}
-                  />
-                  <span>{label}</span>
-                </SLabel>
-              ),
-            )}
-          </SMainCheckbox>
-        </SMainCheckboxWrapper>
-      </SGridListContent>
-    </SGridList>
+  return (
+    <>
+      <SGridList style={getCSSColour() as any}>
+        <SGridBackground style={getBackground() as any} />
+        <SGridListContent>
+          <SGridTitle>{getTitle()}</SGridTitle>
+          <SMainCheckboxWrapper>
+            <SMainCheckbox>
+              <SLabel $hightlight={selectedFlavourList.length === 0}>
+                <SInput onChange={onChange} type="checkbox" data-id="all" />
+                <span>ALL</span>
+              </SLabel>
+              {flavour.profileOff.list.map(
+                ({ onFocus, checked, dataId, id, textColour, label }) => (
+                  <SLabel
+                    key={dataId}
+                    htmlFor={`flavour-${dataId}`}
+                    $checked={checked}
+                  >
+                    <SInput
+                      onChange={onChange}
+                      id={`flavour-${dataId}`}
+                      type="checkbox"
+                      data-id={dataId}
+                      checked={checked}
+                    />
+                    <span>{label}</span>
+                  </SLabel>
+                ),
+              )}
+            </SMainCheckbox>
+          </SMainCheckboxWrapper>
+        </SGridListContent>
+      </SGridList>
+
+      {controlledElement &&
+        createPortal(
+          // The JSX you want to render inside the controlled DOM element
+          <SFilter>
+            {filter.map(({ dataId, label, list, type, name }, key) => (
+              <FilterList
+                dataId={dataId}
+                key={key}
+                label={label}
+                list={list}
+                type={type}
+                name={name}
+                onChange={onFilterChange}
+                index={key}
+              />
+            ))}
+
+            <FilterList {...sort} onChange={onFilterChange} />
+          </SFilter>,
+          controlledElement,
+        )}
+    </>
   )
 }

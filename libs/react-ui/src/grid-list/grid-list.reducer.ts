@@ -1,6 +1,18 @@
 import { C } from './grid-list.constant'
 import { TGridListFlavour } from './grid-list.type'
 
+type TFilterItem = {
+  dataId: number | string
+  label: string
+  checked?: boolean
+}
+
+export type TFilterList = {
+  list: TFilterItem[]
+  type: 'checkbox' | 'radio'
+  name?: string
+} & TFilterItem
+
 type TGridConfig = {
   pageid: number
   source: string
@@ -34,6 +46,8 @@ type TGridList = {
       selected: TGridListFlavour[]
     }
   }
+  filter: TFilterList[]
+  sort: TFilterList
 }
 
 export const initialValue: TGridList = {
@@ -49,6 +63,26 @@ export const gridListReducer = (state = initialValue, action: any) => {
   const newState = structuredClone(state)
 
   switch (action.type) {
+    case C.GRID_LIST_CHANGE_RADIO:
+      newState.sort.list = newState.sort.list.map((radio) => ({
+        ...radio,
+        checked: radio.dataId === action.dataId,
+      }))
+      return newState
+
+    case C.GRID_LIST_CHANGE_CHECKBOX:
+      newState.filter[action.parsedKey].list = newState.filter[
+        action.parsedKey
+      ].list.map((checkbox) =>
+        checkbox.dataId === +action.dataId
+          ? {
+              ...checkbox,
+              checked: !checkbox.checked,
+            }
+          : checkbox,
+      )
+      return newState
+
     case C.GRID_LIST_CHANGE_FLAVOUR:
       newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
         (flavour) =>

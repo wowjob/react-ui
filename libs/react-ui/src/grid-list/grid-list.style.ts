@@ -1,6 +1,12 @@
 import { styled } from 'styled-components'
 import { $TGridListFlavour } from './grid-list.type'
 
+export const SFilter = styled.div`
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+`
+
 export const SGridTitle = styled.h1`
   font-family: 'Johnnie Walker Sans Headline';
   font-size: 7.5rem;
