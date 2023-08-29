@@ -20,6 +20,11 @@ import { A } from './rotating-carousel.action'
 import { Button, RotatingItem, TRotatingItem } from '..'
 import { generateSequence } from '@af/util'
 
+const locationReload = () => {
+  // Check if navigating back to this page
+  window.location.reload()
+}
+
 export const RotatingCarousel = () => {
   const rotatingCarouselRef = useRef<HTMLDivElement>(null)
   const swipeData = useRef({
@@ -47,6 +52,12 @@ export const RotatingCarousel = () => {
   useEffect(() => {
     if (!initialized) {
       dispatch(A.actionInit())
+    }
+
+    window.addEventListener('popstate', locationReload, false)
+
+    return () => {
+      window.removeEventListener('popstate', locationReload)
     }
   }, [initialized])
 
