@@ -5,6 +5,21 @@ export const SFilter = styled.div`
   display: flex;
   gap: 2rem;
   flex-direction: column;
+  max-width: 17.5rem;
+`
+
+export const STitleWrapper = styled.section`
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+`
+
+export const STitle = styled.h3`
+  font-family: 'Johnnie Walker Sans Headline';
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  margin: 0;
+  padding-inline: 1rem;
 `
 
 export const SGridTitle = styled.h1`

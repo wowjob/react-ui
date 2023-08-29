@@ -29,6 +29,7 @@
             variety: 'a variety of cocktails',
           },
         },
+        profileOn: true,
         postURL: '#',
         maxSelected: 2,
         mainTitle: 'What flavours are you feeling?',
@@ -174,30 +175,56 @@
             ],
           },
         },
-        filter: [
-          {
-            dataId: 12345,
-            label: 'Characteristics',
-            type: 'checkbox',
-            list: [
-              { checked: false, dataId: 23555, label: 'fizzy' },
-              { checked: true, dataId: 23666, label: 'warm' },
-              { checked: false, dataId: 23777, label: 'tall' },
-              { checked: true, dataId: 23888, label: 'desert' },
-            ],
-          },
-          {
-            dataId: 56789,
-            label: 'Colour',
-            type: 'checkbox',
-            list: [
-              { checked: false, dataId: 56555, label: 'red' },
-              { checked: false, dataId: 56666, label: 'brown' },
-              { checked: true, dataId: 56777, label: 'orange' },
-              { checked: false, dataId: 56888, label: 'black' },
-            ],
-          },
-        ],
+        filter: {
+          profileOn: [
+            {
+              dataId: 12345,
+              label: 'Characteristics',
+              type: 'checkbox',
+              list: [
+                { checked: true, dataId: 23555, label: 'fizzy' },
+                { checked: true, dataId: 23666, label: 'warm' },
+                { checked: false, dataId: 23777, label: 'tall' },
+                { checked: true, dataId: 23888, label: 'desert' },
+              ],
+            },
+            {
+              dataId: 56789,
+              label: 'Colour',
+              type: 'checkbox',
+              list: [
+                { checked: true, dataId: 56555, label: 'red' },
+                { checked: false, dataId: 56666, label: 'brown' },
+                { checked: true, dataId: 56777, label: 'orange' },
+                { checked: true, dataId: 56888, label: 'black' },
+              ],
+            },
+          ],
+          profileOff: [
+            {
+              dataId: 12345,
+              label: 'Characteristics',
+              type: 'checkbox',
+              list: [
+                { checked: false, dataId: 23555, label: 'fizzy' },
+                { checked: true, dataId: 23666, label: 'warm' },
+                { checked: false, dataId: 23777, label: 'tall' },
+                { checked: true, dataId: 23888, label: 'desert' },
+              ],
+            },
+            {
+              dataId: 56789,
+              label: 'Colour',
+              type: 'checkbox',
+              list: [
+                { checked: false, dataId: 56555, label: 'red' },
+                { checked: false, dataId: 56666, label: 'brown' },
+                { checked: true, dataId: 56777, label: 'orange' },
+                { checked: false, dataId: 56888, label: 'black' },
+              ],
+            },
+          ],
+        },
         sort: {
           dataId: 56789,
           label: 'Sort by',

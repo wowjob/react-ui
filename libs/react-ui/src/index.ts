@@ -6,6 +6,7 @@ export { GridList } from './grid-list'
 export { Image } from './image'
 export { RotatingCarousel } from './rotating-carousel'
 export { RotatingItem } from './rotating-item'
+export { Toggle } from './toggle'
 
 // type
 export type { TRotatingItem } from './rotating-item'
