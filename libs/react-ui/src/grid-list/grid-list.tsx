@@ -120,7 +120,7 @@ export const GridList = () => {
   }
 
   // Reference to the controlled DOM element
-  const controlledElement = document.querySelector('.accessible-filter__side')
+  // const controlledElement = document.querySelector('.accessible-filter__side')
 
   return (
     <>
@@ -157,7 +157,7 @@ export const GridList = () => {
         </SGridListContent>
       </SGridList>
 
-      {controlledElement &&
+      {/* {controlledElement &&
         createPortal(
           // The JSX you want to render inside the controlled DOM element
           <SFilter>
@@ -197,7 +197,7 @@ export const GridList = () => {
             <FilterList {...sort} onChange={onFilterChange} />
           </SFilter>,
           controlledElement,
-        )}
+        )} */}
     </>
   )
 }
