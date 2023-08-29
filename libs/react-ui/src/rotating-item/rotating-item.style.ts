@@ -34,7 +34,7 @@ export const SRotatingImageWrapper = styled.div<$TRotatingItem>`
   width: 14.25rem; // 228px
   height: 17rem; // 272px
   position: relative;
-  transform: scale(${({ $focused }) => ($focused ? 1 : 0.75)});
+  transform: scale(${({ $focused }) => ($focused ? 1 : 0.8)});
 
   &::before,
   &::after {
@@ -90,7 +90,8 @@ export const SRotatingDescription = styled.p<$TRotatingItem>`
   pointer-events: none;
   transition: 250ms;
   opacity: ${({ $focused }) => ($focused ? 1 : 0)};
-  color: var(--text-color, var(--black));
+  color: var(--black);
+  margin: 0;
 `
 
 export const SRotatingInput = styled.input`
