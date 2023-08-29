@@ -48,6 +48,8 @@ type TGridList = {
     }
   }
   filter: {
+    profileToggleLabel: string
+    profileToggleDescription: string
     profileOn: TFilterList[]
     profileOff: TFilterList[]
   }
