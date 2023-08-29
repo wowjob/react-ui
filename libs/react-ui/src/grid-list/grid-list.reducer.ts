@@ -1,0 +1,87 @@
+import { C } from './grid-list.constant'
+import { TGridListFlavour } from './grid-list.type'
+
+type TGridConfig = {
+  pageid: number
+  source: string
+  profile: string
+  type: string
+  noFilterTextcolor: string
+  noFilterBackgroundcolor: string
+  noFilterBackground: string
+  manyFilterTextcolor: string
+  manyFilterBackgroundcolor: string
+  manyFilterBackground: string
+  flavour: {
+    all: string
+    cocktails: string
+    variety: string
+  }
+}
+
+type TGridList = {
+  postURL: string
+  flavourList: TGridListFlavour[]
+  initialized: boolean
+  config: TGridConfig
+  flavour: {
+    profileOn: {
+      list: TGridListFlavour[]
+      selected: TGridListFlavour[]
+    }
+    profileOff: {
+      list: TGridListFlavour[]
+      selected: TGridListFlavour[]
+    }
+  }
+}
+
+export const initialValue: TGridList = {
+  ...(window as any).gridList,
+  lastFocused: 'flavour-selector-1',
+  selectedFlavourList: [],
+}
+
+const getSelected = (list: TGridListFlavour[]) =>
+  list.filter(({ checked }) => checked)
+
+export const gridListReducer = (state = initialValue, action: any) => {
+  const newState = structuredClone(state)
+
+  switch (action.type) {
+    case C.GRID_LIST_CHANGE_FLAVOUR:
+      newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
+        (flavour) =>
+          flavour.dataId === action.dataId
+            ? { ...flavour, checked: !flavour.checked }
+            : flavour,
+      )
+      newState.flavour.profileOff.selected = getSelected(
+        newState.flavour.profileOff.list,
+      )
+      return newState
+
+    case C.GRID_LIST_RESET_FLAVOUR:
+      newState.flavour.profileOff.selected = []
+      newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
+        (flavour) => ({
+          ...flavour,
+          checked: false,
+        }),
+      )
+      return newState
+
+    case C.GRID_LIST_INIT:
+      newState.flavour.profileOff.selected = getSelected(
+        newState.flavour.profileOff.list,
+      )
+      newState.flavour.profileOn.selected = getSelected(
+        newState.flavour.profileOn.list,
+      )
+      newState.initialized = true
+      return newState
+
+    default:
+      return state
+  }
+}

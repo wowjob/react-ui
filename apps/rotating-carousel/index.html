@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RotatingCarousel</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <script>
+      window.rotatingCarousel = {
+        postURL: '#',
+        maxSelected: 2,
+        mainTitle: 'What flavours are you feeling?',
+        maxSelectedText: 'Please select up to three flavours',
+        currentSelectedJoinText: ' of ',
+        action: {
+          buttonList: ['next', 'prev'],
+          prefix: 'hero-form__link--',
+        },
+        list: [
+          {
+            id: 6,
+            checked: false,
+            dataId: 40628,
+            label: 'Fresh',
+            itemImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/1423/john-walker-and-sons-private-collection-doc.jpg',
+            backgroundImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/1423/john-walker-and-sons-private-collection-doc.jpg',
+            description:
+              'Ranges from light and floral, like crisp pears, to the earthy freshness of pine and moss.',
+            textColour: '#ffffff',
+          },
+
+          {
+            id: 7,
+            checked: false,
+            dataId: 40779,
+            label: 'Fruity',
+            itemImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/2765/jws_king_george_v.jpg',
+            backgroundImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/2765/jws_king_george_v.jpg',
+            description: '',
+            textColour: '#000000',
+          },
+
+          {
+            id: 8,
+            checked: false,
+            dataId: 40947,
+            label: 'Smoky',
+            itemImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10951/smoky_landscape.gif',
+            backgroundImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10951/smoky_landscape.gif',
+            description: '',
+            textColour: '#fcf5df',
+          },
+
+          {
+            id: 9,
+            checked: false,
+            dataId: 40948,
+            label: 'Spicy',
+            itemImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10953/spicy_landscape.gif',
+            backgroundImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10953/spicy_landscape.gif',
+            description: '',
+            textColour: '#000000',
+          },
+
+          {
+            id: 10,
+            checked: false,
+            dataId: 40949,
+            label: 'Tropical',
+            itemImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10954/tropical_landscape.gif',
+            backgroundImage:
+              'https://jwt-u7dev-alb.analogfolk.com/media/10954/tropical_landscape.gif',
+            description: '',
+            textColour: '#000000',
+          },
+        ],
+      }
+    </script>
+    <div id="rotating-carousel"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
