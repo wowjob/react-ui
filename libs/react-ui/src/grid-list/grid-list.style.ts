@@ -1,6 +1,23 @@
 import { styled } from 'styled-components'
 import { $TGridListFlavour } from './grid-list.type'
 
+export const SChevron = styled.span<$TGridListFlavour>`
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+
+  &::before {
+    transition: 250ms;
+    content: '\\e905';
+    font-family: 'jw-icon';
+    font-size: 1.125rem;
+    left: 1.2rem;
+    top: 0.2rem;
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+`
+
 export const SFilter = styled.div`
   display: flex;
   gap: 2rem;
@@ -20,6 +37,16 @@ export const STitle = styled.h3`
   line-height: 1.25rem;
   margin: 0;
   padding-inline: 1rem;
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none; /* Safari, Chrome, and Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard syntax */
+
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
 `
 
 export const SGridTitle = styled.h1`
@@ -100,4 +127,16 @@ export const SInput = styled.input`
   margin: -1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
+
+  &[id='toggle-filter']:checked {
+    & + [for='toggle-filter'] ${SChevron} {
+      &::before {
+        transform: rotate(270deg);
+      }
+    }
+
+    & ~ div {
+      display: none;
+    }
+  }
 `
