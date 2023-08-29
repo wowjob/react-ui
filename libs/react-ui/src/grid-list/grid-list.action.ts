@@ -30,10 +30,15 @@ const actionInitFlavour = () => ({
   type: C.GRID_LIST_INIT,
 })
 
+const actionToggleProfile = () => ({
+  type: C.GRID_LIST_TOGGLE_PROFILE,
+})
+
 export const A = {
   actionResetFlavour,
   actionChangeFlavour,
   actionInitFlavour,
   actionChangeCheckbox,
   actionChangeRadio,
+  actionToggleProfile,
 }

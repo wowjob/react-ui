@@ -33,6 +33,7 @@ type TGridConfig = {
 
 type TGridList = {
   postURL: string
+  profileOn: boolean
   flavourList: TGridListFlavour[]
   initialized: boolean
   config: TGridConfig
@@ -46,7 +47,10 @@ type TGridList = {
       selected: TGridListFlavour[]
     }
   }
-  filter: TFilterList[]
+  filter: {
+    profileOn: TFilterList[]
+    profileOff: TFilterList[]
+  }
   sort: TFilterList
 }
 
@@ -61,8 +65,13 @@ const getSelected = (list: TGridListFlavour[]) =>
 
 export const gridListReducer = (state = initialValue, action: any) => {
   const newState = structuredClone(state)
+  const whichFilter = newState.profileOn ? 'profileOn' : 'profileOff'
 
   switch (action.type) {
+    case C.GRID_LIST_TOGGLE_PROFILE:
+      newState.profileOn = !newState.profileOn
+      return newState
+
     case C.GRID_LIST_CHANGE_RADIO:
       newState.sort.list = newState.sort.list.map((radio) => ({
         ...radio,
@@ -71,9 +80,9 @@ export const gridListReducer = (state = initialValue, action: any) => {
       return newState
 
     case C.GRID_LIST_CHANGE_CHECKBOX:
-      newState.filter[action.parsedKey].list = newState.filter[
-        action.parsedKey
-      ].list.map((checkbox) =>
+      newState.filter[whichFilter][action.parsedKey].list = newState.filter[
+        whichFilter
+      ][action.parsedKey].list.map((checkbox) =>
         checkbox.dataId === +action.dataId
           ? {
               ...checkbox,

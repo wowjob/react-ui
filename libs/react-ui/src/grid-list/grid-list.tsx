@@ -10,17 +10,21 @@ import {
   SLabel,
   SMainCheckbox,
   SMainCheckboxWrapper,
+  STitle,
+  STitleWrapper,
 } from './grid-list.style'
 import { gridListReducer, initialValue } from './grid-list.reducer'
 import { A } from './grid-list.action'
 import { hexToHSL } from '@af/util'
 import { createPortal } from 'react-dom'
 import { FilterList } from '../filter-list'
+import { Toggle } from '../toggle'
 
 export const GridList = () => {
   const [state, dispatch] = useReducer(gridListReducer, initialValue)
-  const { flavour, initialized, config, filter, sort } = state
-  const { selected: selectedFlavourList = [] } = flavour.profileOff
+  const { flavour, initialized, config, filter, sort, profileOn } = state
+  const whichFilter = profileOn ? 'profileOn' : 'profileOff'
+  const { selected: selectedFlavourList = [] } = flavour[whichFilter]
 
   useEffect(() => {
     if (!initialized) {
@@ -50,6 +54,10 @@ export const GridList = () => {
     } else if (type === 'radio') {
       dispatch(A.actionChangeRadio(dataId || '', parsedName))
     }
+  }
+
+  const onProfileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(A.actionToggleProfile())
   }
 
   const getCSSColour = () => {
@@ -125,7 +133,7 @@ export const GridList = () => {
                 <SInput onChange={onChange} type="checkbox" data-id="all" />
                 <span>ALL</span>
               </SLabel>
-              {flavour.profileOff.list.map(
+              {flavour[whichFilter].list.map(
                 ({ onFocus, checked, dataId, id, textColour, label }) => (
                   <SLabel
                     key={dataId}
@@ -152,18 +160,26 @@ export const GridList = () => {
         createPortal(
           // The JSX you want to render inside the controlled DOM element
           <SFilter>
-            {filter.map(({ dataId, label, list, type, name }, key) => (
-              <FilterList
-                dataId={dataId}
-                key={key}
-                label={label}
-                list={list}
-                type={type}
-                name={name}
-                onChange={onFilterChange}
-                index={key}
-              />
-            ))}
+            <STitleWrapper>
+              <STitle>Use my flavour profile</STitle>
+              <Toggle checked={profileOn} onChange={onProfileChange} />
+            </STitleWrapper>
+
+            <div>Filter</div>
+            {filter[whichFilter].map(
+              ({ dataId, label, list, type, name }, key) => (
+                <FilterList
+                  dataId={dataId}
+                  key={key}
+                  label={label}
+                  list={list}
+                  type={type}
+                  name={name}
+                  onChange={onFilterChange}
+                  index={key}
+                />
+              ),
+            )}
 
             <FilterList {...sort} onChange={onFilterChange} />
           </SFilter>,
