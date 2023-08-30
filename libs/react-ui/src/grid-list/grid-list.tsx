@@ -103,6 +103,21 @@ export const GridList = () => {
             if (gridList) {
               gridList.innerHTML = htmlResponse
               // ?.insertAdjacentHTML('beforeend', htmlResponse)
+
+              const loadMore = document.querySelector(
+                '.paging-container > .button-ghost.item-paging',
+              )
+
+              const fetchMoreData = () => {
+                console.log('fetch more data')
+                dispatch(A.actionIncreaseUpdate())
+              }
+
+              if (loadMore) {
+                dispatch(A.actionIncreasePageNumber())
+                loadMore.removeEventListener('click', fetchMoreData)
+                loadMore.addEventListener('click', fetchMoreData)
+              }
             }
           })
       } catch (error: any) {

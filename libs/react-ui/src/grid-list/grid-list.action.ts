@@ -39,7 +39,17 @@ const actionForceSelectOne = (label: string) => ({
   label,
 })
 
+const actionIncreasePageNumber = () => ({
+  type: C.GRID_LIST_INCREASE_PAGE_NUMBER,
+})
+
+const actionIncreaseUpdate = () => ({
+  type: C.GRID_LIST_INCREASE_UPDATE,
+})
+
 export const A = {
+  actionIncreaseUpdate,
+  actionIncreasePageNumber,
   actionForceSelectOne,
   actionResetFlavour,
   actionChangeFlavour,
