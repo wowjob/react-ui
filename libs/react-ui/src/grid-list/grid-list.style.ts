@@ -100,7 +100,7 @@ export const SMainCheckbox = styled.div`
   gap: 1rem;
 `
 
-export const SSpan = styled.label<$TGridListFlavour>`
+export const SSpan = styled.span<$TGridListFlavour>`
   font-family: 'Johnnie Walker Sans Headline';
   text-transform: uppercase;
   font-size: 1.25rem;
