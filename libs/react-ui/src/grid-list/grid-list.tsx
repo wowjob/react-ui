@@ -96,9 +96,14 @@ export const GridList = () => {
               .querySelector('.grid-list__wrapper .paging-container')
               ?.remove()
 
-            document
-              .querySelector('.accessible-filter__grid-list')
-              ?.insertAdjacentHTML('beforeend', htmlResponse)
+            const gridList = document.querySelector(
+              '.accessible-filter__grid-list',
+            )
+
+            if (gridList) {
+              gridList.innerHTML = htmlResponse
+              // ?.insertAdjacentHTML('beforeend', htmlResponse)
+            }
           })
       } catch (error: any) {
         console.log('Error: ', error?.message)
