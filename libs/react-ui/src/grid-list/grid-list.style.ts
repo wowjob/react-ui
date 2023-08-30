@@ -55,11 +55,24 @@ export const STitle = styled.h3<$TGridListFlavour>`
 
 export const SGridTitle = styled.h1`
   font-family: 'Johnnie Walker Sans Headline';
-  font-size: 7.5rem;
-  line-height: 6.25rem;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 4rem;
+  line-height: 3.5rem;
   color: var(--text-color, var(--black));
   margin: 0;
   text-shadow: 0 0 1px var(--black);
+
+  /* tablet */
+  @media screen and (min-width: 48rem) {
+    font-size: 6.5rem;
+    line-height: 5.375rem;
+  }
+
+  /* desktop */
+  @media screen and (min-width: 80rem) {
+    font-size: 7.5rem;
+    line-height: 6.25rem;
+  }
 `
 
 export const SGridList = styled.div`
