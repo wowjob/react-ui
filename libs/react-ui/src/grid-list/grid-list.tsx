@@ -11,6 +11,7 @@ import {
   SLabel,
   SMainCheckbox,
   SMainCheckboxWrapper,
+  SSpan,
   STitle,
   STitleWrapper,
 } from './grid-list.style'
@@ -211,7 +212,7 @@ export const GridList = () => {
                       data-id={dataId}
                       checked={checked}
                     />
-                    <span>{label}</span>
+                    <SSpan>{label}</SSpan>
                   </SLabel>
                 ),
               )}
@@ -239,7 +240,8 @@ export const GridList = () => {
             </STitleWrapper>
 
             <SInput type="checkbox" id="toggle-filter" />
-            <STitle as="label" htmlFor="toggle-filter">
+
+            <STitle $underline as="label" htmlFor="toggle-filter">
               Filter
               <SChevron $checked={profileOn} />
             </STitle>

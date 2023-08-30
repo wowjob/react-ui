@@ -14,6 +14,7 @@ export type TGridListFlavourBase = {
   focused?: boolean
   checked?: boolean
   hightlight?: boolean
+  underline?: boolean
   theme?: TTheme
 }
 
