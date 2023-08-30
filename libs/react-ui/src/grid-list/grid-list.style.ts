@@ -93,10 +93,18 @@ export const SGridListContent = styled.div`
 export const SMainCheckboxWrapper = styled.div`
   display: block;
   overflow-y: auto;
+  position: relative;
+  height: 3.75rem;
+  max-width: 100%;
+  white-space: nowrap;
 `
 
 export const SMainCheckbox = styled.div`
-  display: flex;
+  display: inline-flex;
+
+  width: 100%;
+  height: 3.75rem;
+
   gap: 1rem;
 `
 
@@ -110,6 +118,7 @@ export const SSpan = styled.span<$TGridListFlavour>`
 export const SLabel = styled.label<$TGridListFlavour>`
   font-family: 'Johnnie Walker Sans Headline';
   text-transform: uppercase;
+  flex: none;
   width: 9.75rem;
   height: 3.75rem;
   border: 0.125rem solid var(--border-color);
