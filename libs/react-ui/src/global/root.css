@@ -27,3 +27,7 @@
   --jw-icon-info: '\e903';
   --jw-icon-cross: '\e904';
 }
+
+.grid-list {
+  width: 100%;
+}
