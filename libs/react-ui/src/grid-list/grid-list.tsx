@@ -101,8 +101,11 @@ export const GridList = () => {
             )
 
             if (gridList) {
-              gridList.innerHTML = htmlResponse
-              // ?.insertAdjacentHTML('beforeend', htmlResponse)
+              if ((pageNumber || 0) < 2) {
+                gridList.innerHTML = htmlResponse
+              } else {
+                gridList.insertAdjacentHTML('beforeend', htmlResponse)
+              }
 
               const loadMore = document.querySelector(
                 '.paging-container > .button-ghost.item-paging',
