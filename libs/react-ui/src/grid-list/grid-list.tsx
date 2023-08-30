@@ -196,7 +196,7 @@ export const GridList = () => {
             <SMainCheckbox>
               <SLabel $hightlight={selectedFlavourList.length === 0}>
                 <SInput onChange={onChange} type="checkbox" data-id="all" />
-                <span>ALL</span>
+                <SSpan>ALL</SSpan>
               </SLabel>
               {flavour[whichFilter].list.map(
                 ({ onFocus, checked, dataId, id, textColour, label }) => (
