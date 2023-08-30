@@ -12,14 +12,21 @@ export const STitle = styled.h3`
   font-size: 1.25rem;
   line-height: 1.25rem;
   margin: 0;
-  padding-inline: 1rem;
+  /* padding-inline: 1rem; */
+`
+
+export const SSpan = styled.span`
+  font-family: 'Johnnie Walker Sans Headline';
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
 `
 
 export const SLabel = styled.label<$TFilterItem>`
   position: relative;
   display: flex;
-  gap: 0.75rem;
-  padding-inline: 1rem;
+  gap: 1rem;
+  /* padding-inline: 1rem; */
   cursor: pointer;
 
   &::before,
@@ -29,8 +36,8 @@ export const SLabel = styled.label<$TFilterItem>`
 
   &::before {
     content: '';
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
     display: inline-block;
     border: 1px solid var(--light-gray);
     border-radius: ${({ $type }) => ($type === 'radio' ? '50%' : 0)};
@@ -43,8 +50,8 @@ export const SLabel = styled.label<$TFilterItem>`
     font-family: 'jw-icon';
     position: absolute;
     font-size: 0.625rem;
-    left: 1.2rem;
-    top: 0.2rem;
+    left: 0.3rem;
+    top: 0rem;
     width: 1rem;
     height: 1rem;
     display: inline-block;

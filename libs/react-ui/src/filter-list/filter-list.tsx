@@ -1,4 +1,4 @@
-import { SInput, SLabel, SList, STitle } from './filter-list.style'
+import { SInput, SLabel, SList, SSpan, STitle } from './filter-list.style'
 import type { TFilterList } from './filter-list.type'
 
 export const FilterList = ({
@@ -29,7 +29,7 @@ export const FilterList = ({
             id={`${type}-${dataId}-${id}-${index}`}
             data-id={id}
           />
-          <span>{text}</span>
+          <SSpan>{text}</SSpan>
         </SLabel>
       ))}
     </SList>

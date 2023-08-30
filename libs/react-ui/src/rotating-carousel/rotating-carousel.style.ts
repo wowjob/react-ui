@@ -95,9 +95,13 @@ export const SButton = styled.button<$TButton>`
   border-radius: 50%;
   border: 0;
   transition: 250ms;
-  background-color: var(--black);
-  color: var(--white);
   font-family: 'jw-icon' !important;
+
+  &,
+  &:hover {
+    background-color: var(--black) !important;
+    color: var(--white) !important;
+  }
 
   // fix bleeding css
   padding: 0;

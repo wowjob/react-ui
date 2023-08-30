@@ -269,6 +269,7 @@ export const RotatingCarousel = () => {
             <Button name="next" onClick={onClick} theme="fill">
               Next
             </Button>
+
             <Button name="skip" onClick={onClick} theme="text">
               Skip
             </Button>
