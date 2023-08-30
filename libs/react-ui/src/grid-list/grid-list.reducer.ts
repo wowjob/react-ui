@@ -137,6 +137,25 @@ export const gridListReducer = (state = initialValue, action: any) => {
 
       return newState
 
+    case C.GRID_LIST_FORCE_SELECT_ONE:
+      newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
+        (flavour) => {
+          return {
+            ...flavour,
+            checked:
+              flavour.label?.toLowerCase() === action.label.toLowerCase()
+                ? true
+                : false,
+          }
+        },
+      )
+      newState.flavour.profileOff.selected = getSelected(
+        newState.flavour.profileOff.list,
+      )
+      newState.lastUpdate = newState.lastUpdate + 1
+      newState.profileOn = false
+      return newState
+
     case C.GRID_LIST_INIT:
       newState.flavour.profileOff.selected = getSelected(
         newState.flavour.profileOff.list,

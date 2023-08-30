@@ -40,6 +40,12 @@ export const GridList = () => {
   useEffect(() => {
     if (!initialized) {
       dispatch(A.actionInitFlavour())
+      const paramList = new URL(window.location.href)
+      const flavour = paramList.searchParams.get('flavor')
+      if (flavour) {
+        console.log(flavour)
+        dispatch(A.actionForceSelectOne(flavour))
+      }
     }
   }, [initialized])
 
