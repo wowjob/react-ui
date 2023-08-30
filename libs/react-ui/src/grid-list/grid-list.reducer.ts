@@ -32,6 +32,7 @@ type TGridConfig = {
 }
 
 type TGridList = {
+  pageNumber?: number
   postURL: string
   profileOn: boolean
   flavourList: TGridListFlavour[]
@@ -76,6 +77,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
     case C.GRID_LIST_TOGGLE_PROFILE:
       newState.profileOn = !newState.profileOn
       newState.lastUpdate = newState.lastUpdate + 1
+      newState.pageNumber = 1
       return newState
 
     case C.GRID_LIST_CHANGE_RADIO:
@@ -84,6 +86,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
         checked: radio.dataId === action.dataId,
       }))
       newState.lastUpdate = newState.lastUpdate + 1
+      newState.pageNumber = 1
 
       return newState
 
@@ -101,6 +104,8 @@ export const gridListReducer = (state = initialValue, action: any) => {
       if (whichFilter === 'profileOn') {
         newState.profileOn = false
       }
+
+      newState.pageNumber = 1
 
       newState.lastUpdate = newState.lastUpdate + 1
 
@@ -122,6 +127,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
       }
 
       newState.lastUpdate = newState.lastUpdate + 1
+      newState.pageNumber = 1
 
       return newState
 
@@ -134,6 +140,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
         }),
       )
       newState.lastUpdate = newState.lastUpdate + 1
+      newState.pageNumber = 1
 
       return newState
 
@@ -154,6 +161,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
       )
       newState.lastUpdate = newState.lastUpdate + 1
       newState.profileOn = false
+      newState.pageNumber = 1
       return newState
 
     case C.GRID_LIST_INIT:
@@ -164,6 +172,7 @@ export const gridListReducer = (state = initialValue, action: any) => {
         newState.flavour.profileOn.list,
       )
       newState.initialized = true
+      newState.pageNumber = 1
       newState.lastUpdate = newState.lastUpdate + 1
 
       return newState
