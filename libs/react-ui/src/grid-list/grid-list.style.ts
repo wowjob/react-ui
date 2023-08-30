@@ -23,6 +23,7 @@ export const SFilter = styled.div`
   gap: 2rem;
   flex-direction: column;
   max-width: 17.5rem;
+  padding-bottom: 3rem;
 `
 
 export const STitleWrapper = styled.section`
