@@ -15,10 +15,17 @@ export const STitle = styled.h3`
   padding-inline: 1rem;
 `
 
+export const SSpan = styled.label`
+  font-family: 'Johnnie Walker Sans Headline';
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+`
+
 export const SLabel = styled.label<$TFilterItem>`
   position: relative;
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   padding-inline: 1rem;
   cursor: pointer;
 

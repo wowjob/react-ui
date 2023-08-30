@@ -31,12 +31,12 @@ export const STitleWrapper = styled.section`
   justify-content: space-between;
 `
 
-export const STitle = styled.h3`
+export const STitle = styled.h3<$TGridListFlavour>`
   font-family: 'Johnnie Walker Sans Headline';
   font-size: 1.25rem;
   line-height: 1.25rem;
   margin: 0;
-  padding-inline: 1rem;
+  padding: 1rem 0.625rem;
   cursor: pointer;
   position: relative;
   -webkit-user-select: none; /* Safari, Chrome, and Opera */
@@ -47,6 +47,9 @@ export const STitle = styled.h3`
   display: flex;
   gap: 0.75rem;
   justify-content: space-between;
+
+  border-bottom: 0.125rem solid
+    ${({ $underline }) => ($underline ? 'var(--black)' : 'transparent')};
 `
 
 export const SGridTitle = styled.h1`
@@ -59,6 +62,7 @@ export const SGridTitle = styled.h1`
 `
 
 export const SGridList = styled.div`
+  padding: 3rem 0;
   width: 100%;
   max-width: 90rem;
   height: 37.5rem;
@@ -95,8 +99,16 @@ export const SMainCheckbox = styled.div`
   gap: 1rem;
 `
 
+export const SSpan = styled.label<$TGridListFlavour>`
+  font-family: 'Johnnie Walker Sans Headline';
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+`
+
 export const SLabel = styled.label<$TGridListFlavour>`
   font-family: 'Johnnie Walker Sans Headline';
+  text-transform: uppercase;
   width: 9.75rem;
   height: 3.75rem;
   border: 0.125rem solid var(--border-color);
