@@ -29,6 +29,7 @@ export const STitleWrapper = styled.section`
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const STitle = styled.h3<$TGridListFlavour>`
