@@ -33,6 +33,7 @@ export const GridList = () => {
     profileOn,
     lastUpdate,
     postURL,
+    pageNumber,
   } = state
   const whichFilter = profileOn ? 'profileOn' : 'profileOff'
   const { selected: selectedFlavourList = [] } = flavour[whichFilter]
@@ -73,8 +74,7 @@ export const GridList = () => {
         documentTypes: config.type,
         filters: JSON.stringify([...filterList, mainSelectionMap]),
         sort: sort.list.find(({ checked }) => checked)?.dataId,
-        pageNumber:
-          document.querySelectorAll('.grid-list__wrapper').length + 1 || 1,
+        pageNumber,
       }
 
       try {
