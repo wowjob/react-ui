@@ -74,6 +74,14 @@ export const gridListReducer = (state = initialValue, action: any) => {
   const whichFilter = newState.profileOn ? 'profileOn' : 'profileOff'
 
   switch (action.type) {
+    case C.GRID_LIST_INCREASE_UPDATE:
+      newState.lastUpdate = newState.lastUpdate + 1
+      return newState
+
+    case C.GRID_LIST_INCREASE_PAGE_NUMBER:
+      newState.pageNumber = (newState.pageNumber || 1) + 1
+      return newState
+
     case C.GRID_LIST_TOGGLE_PROFILE:
       newState.profileOn = !newState.profileOn
       newState.lastUpdate = newState.lastUpdate + 1
