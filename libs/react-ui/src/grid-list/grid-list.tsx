@@ -113,6 +113,7 @@ export const GridList = () => {
         ? A.actionResetFlavour()
         : A.actionChangeFlavour(+(dataId || 0)),
     )
+    e.preventDefault()
   }
 
   const onFilterChange = (e: ChangeEvent<HTMLInputElement>) => {

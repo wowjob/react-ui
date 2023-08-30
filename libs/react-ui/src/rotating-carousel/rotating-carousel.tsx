@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 import type { ChangeEvent, FocusEvent, MouseEvent, TouchEvent } from 'react'
 import {
   SAction,
@@ -26,6 +26,10 @@ const locationReload = () => {
 }
 
 export const RotatingCarousel = () => {
+  const [skipState, setSkipState] = useState<any>(
+    (window as any).rotatingCarousel,
+  )
+
   const rotatingCarouselRef = useRef<HTMLDivElement>(null)
   const swipeData = useRef({
     startX: 0,
@@ -52,6 +56,9 @@ export const RotatingCarousel = () => {
   useEffect(() => {
     if (!initialized) {
       dispatch(A.actionInit())
+    } else {
+      console.log('skip ??')
+      setSkipState(state)
     }
 
     window.addEventListener('popstate', locationReload, false)
@@ -131,10 +138,12 @@ export const RotatingCarousel = () => {
       const className = `.${action.prefix}${name} > :first-child`
       const actionElement = document.querySelector(className)
 
-      const taxonomyValueMap: Record<string, string> = list
-        .filter(({ checked }) => checked)
+      const taxonomyValueMap: Record<string, string> = (
+        name === 'skip' && skipState && skipState.list ? skipState.list : list
+      )
+        .filter(({ checked }: { checked: boolean }) => checked)
         .reduce(
-          (a, c: TRotatingItem) => ({ ...a, [c.dataId || '']: c.label }),
+          (a: any, c: TRotatingItem) => ({ ...a, [c.dataId || '']: c.label }),
           {},
         )
 
@@ -269,6 +278,7 @@ export const RotatingCarousel = () => {
             <Button name="next" onClick={onClick} theme="fill">
               Next
             </Button>
+
             <Button name="skip" onClick={onClick} theme="text">
               Skip
             </Button>

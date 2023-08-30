@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { $TButton } from './button.type'
 
 export const SButton = styled.button<$TButton>`
-  width: 100%;
+  width: 100% !important;
   height: 3.75rem;
   font-size: 1.25rem;
   font-family: 'Johnnie Walker Sans Headline';
@@ -11,13 +11,17 @@ export const SButton = styled.button<$TButton>`
 
   border: 2px solid
     ${({ $theme }) =>
-      ['fill', 'outlined'].includes($theme) ? 'var(--black)' : 'transparent'};
+      ['fill', 'outlined'].includes($theme)
+        ? 'var(--black)'
+        : 'transparent'} !important;
   color: ${({ $theme }) =>
-    ['text', 'outlined'].includes($theme) ? 'var(--black)' : 'var(--white)'};
+    ['text', 'outlined'].includes($theme)
+      ? 'var(--black)'
+      : 'var(--white)'} !important;
   background-color: ${({ $theme }) =>
-    'fill' === $theme ? 'var(--black)' : 'transparent'};
+    'fill' === $theme ? 'var(--black)' : 'transparent'} !important;
 
   @media screen and (min-width: 48rem) {
-    width: 15rem;
+    width: 15rem !important;
   }
 `
