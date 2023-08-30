@@ -12,7 +12,7 @@ export const STitle = styled.h3`
   font-size: 1.25rem;
   line-height: 1.25rem;
   margin: 0;
-  padding-inline: 1rem;
+  /* padding-inline: 1rem; */
 `
 
 export const SSpan = styled.span`
@@ -26,7 +26,7 @@ export const SLabel = styled.label<$TFilterItem>`
   position: relative;
   display: flex;
   gap: 1rem;
-  padding-inline: 1rem;
+  /* padding-inline: 1rem; */
   cursor: pointer;
 
   &::before,
@@ -50,7 +50,7 @@ export const SLabel = styled.label<$TFilterItem>`
     font-family: 'jw-icon';
     position: absolute;
     font-size: 0.625rem;
-    left: 1.3rem;
+    left: 0.3rem;
     top: 0rem;
     width: 1rem;
     height: 1rem;
