@@ -26,9 +26,9 @@ const locationReload = () => {
 }
 
 export const RotatingCarousel = () => {
-  const [skipState, setSkipState] = useState<Partial<TRotatingCarousel>>({
-    list: [],
-  })
+  const [skipState, setSkipState] = useState<any>(
+    (window as any).rotatingCarousel,
+  )
 
   const rotatingCarouselRef = useRef<HTMLDivElement>(null)
   const swipeData = useRef({
@@ -141,9 +141,9 @@ export const RotatingCarousel = () => {
       const taxonomyValueMap: Record<string, string> = (
         name === 'skip' && skipState && skipState.list ? skipState.list : list
       )
-        .filter(({ checked }) => checked)
+        .filter(({ checked }: { checked: boolean }) => checked)
         .reduce(
-          (a, c: TRotatingItem) => ({ ...a, [c.dataId || '']: c.label }),
+          (a: any, c: TRotatingItem) => ({ ...a, [c.dataId || '']: c.label }),
           {},
         )
 
