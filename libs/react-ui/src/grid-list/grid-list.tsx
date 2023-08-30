@@ -45,29 +45,32 @@ export const GridList = () => {
 
   useEffect(() => {
     if (lastUpdate > 0) {
-      console.log('FETCH data')
+      const filterList = filter[whichFilter].map((el) => ({
+        taxonomy: el.dataId,
+        values: el.list
+          .filter(({ checked }) => checked)
+          .map(({ dataId }) => dataId),
+      }))
+
+      // main selection
+      const mainSelectionMap = {
+        taxonomy: flavour.featuredId,
+        values: flavour[whichFilter].list
+          .filter(({ checked }) => checked)
+          .map(({ dataId }) => dataId),
+      }
+
       const dataMap = {
         pageId: config.pageid,
         source: config.source,
         taxonomyProfile: config.profile,
         documentTypes: config.type,
-        filters: JSON.stringify(
-          filter[whichFilter].map((el) => ({
-            taxonomy: el.dataId,
-            values: el.list
-              .filter(({ checked }) => checked)
-              .map(({ dataId }) => dataId),
-          })),
-        ),
+        filters: JSON.stringify([...filterList, mainSelectionMap]),
         sort: sort.list.find(({ checked }) => checked)?.dataId,
         pageNumber:
           document.querySelectorAll('.grid-list__wrapper').length + 1 || 1,
       }
 
-      console.log(
-        'dataMap !!!!! it is getting there, almost ready for demo',
-        dataMap,
-      )
       try {
         fetch(postURL, {
           method: 'post',
@@ -99,7 +102,6 @@ export const GridList = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const dataId = (e.target as HTMLInputElement).dataset.id
-    console.log(dataId)
     dispatch(
       dataId === 'all'
         ? A.actionResetFlavour()
@@ -110,7 +112,7 @@ export const GridList = () => {
   const onFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const dataId = (e.target as HTMLInputElement).dataset.id
     const { name, type } = e.target as HTMLInputElement
-    console.log(dataId, name, type)
+
     const parsedName = +name.split('-')[1]
     const parsedKey = +name.split('-')[3]
 
