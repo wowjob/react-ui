@@ -41,7 +41,7 @@ export const GridList = () => {
     if (!initialized) {
       dispatch(A.actionInitFlavour())
       const paramList = new URL(window.location.href)
-      const flavour = paramList.searchParams.get('flavor')
+      const flavour = paramList.searchParams.get('flavour')
       if (flavour) {
         console.log(flavour)
         dispatch(A.actionForceSelectOne(flavour))
