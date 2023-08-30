@@ -105,7 +105,8 @@ export const SGridListContent = styled.div`
 
 export const SMainCheckboxWrapper = styled.div`
   display: block;
-  overflow-x: auto;
+  overflow-x: auto; /* Allows horizontal scrolling */
+  overflow-y: hidden; /* Prevents vertical scrolling */
   position: relative;
   height: 3.75rem;
   max-width: 100%;
