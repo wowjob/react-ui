@@ -88,10 +88,8 @@ export const gridListReducer = (state = initialValue, action: any) => {
       return newState
 
     case C.GRID_LIST_CHANGE_CHECKBOX:
-      if (whichFilter === 'profileOff') {
-        newState.filter[whichFilter][action.parsedKey].list = newState.filter[
-          whichFilter
-        ][action.parsedKey].list.map((checkbox) =>
+      newState.filter.profileOff[action.parsedKey].list =
+        newState.filter.profileOff[action.parsedKey].list.map((checkbox) =>
           checkbox.dataId === +action.dataId
             ? {
                 ...checkbox,
@@ -99,27 +97,30 @@ export const gridListReducer = (state = initialValue, action: any) => {
               }
             : checkbox,
         )
-      } else {
+
+      if (whichFilter === 'profileOn') {
         newState.profileOn = false
       }
+
       newState.lastUpdate = newState.lastUpdate + 1
 
       return newState
 
     case C.GRID_LIST_CHANGE_FLAVOUR:
-      if (whichFilter === 'profileOff') {
-        newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
-          (flavour) =>
-            flavour.dataId === action.dataId
-              ? { ...flavour, checked: !flavour.checked }
-              : flavour,
-        )
-        newState.flavour.profileOff.selected = getSelected(
-          newState.flavour.profileOff.list,
-        )
-      } else {
+      newState.flavour.profileOff.list = newState.flavour.profileOff.list.map(
+        (flavour) =>
+          flavour.dataId === action.dataId
+            ? { ...flavour, checked: !flavour.checked }
+            : flavour,
+      )
+      newState.flavour.profileOff.selected = getSelected(
+        newState.flavour.profileOff.list,
+      )
+
+      if (whichFilter === 'profileOn') {
         newState.profileOn = false
       }
+
       newState.lastUpdate = newState.lastUpdate + 1
 
       return newState
