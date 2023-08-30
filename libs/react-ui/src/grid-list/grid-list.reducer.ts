@@ -37,6 +37,7 @@ type TGridList = {
   profileOn: boolean
   flavourList: TGridListFlavour[]
   initialized: boolean
+  showProfile: boolean
   config: TGridConfig
   flavour: {
     featuredId: number

@@ -34,6 +34,7 @@ export const GridList = () => {
     lastUpdate,
     postURL,
     pageNumber,
+    showProfile,
   } = state
   const whichFilter = profileOn ? 'profileOn' : 'profileOff'
   const { selected: selectedFlavourList = [] } = flavour[whichFilter]
@@ -257,19 +258,21 @@ export const GridList = () => {
         createPortal(
           // The JSX you want to render inside the controlled DOM element
           <SFilter>
-            <STitleWrapper>
-              <STitle as="label" htmlFor="use-profile">
-                {filter.profileToggleLabel}
-              </STitle>
+            {showProfile && (
+              <STitleWrapper>
+                <STitle as="label" htmlFor="use-profile">
+                  {filter.profileToggleLabel}
+                </STitle>
 
-              {/* <div>{filter.profileToggleDescription}</div> */}
+                {/* <div>{filter.profileToggleDescription}</div> */}
 
-              <Toggle
-                id="use-profile"
-                checked={profileOn}
-                onChange={onProfileChange}
-              />
-            </STitleWrapper>
+                <Toggle
+                  id="use-profile"
+                  checked={profileOn}
+                  onChange={onProfileChange}
+                />
+              </STitleWrapper>
+            )}
 
             <SInput type="checkbox" id="toggle-filter" />
 
