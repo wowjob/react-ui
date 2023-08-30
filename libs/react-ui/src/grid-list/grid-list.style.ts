@@ -104,16 +104,15 @@ export const SGridListContent = styled.div`
 `
 
 export const SMainCheckboxWrapper = styled.div`
-  display: block;
   overflow-x: auto; /* Allows horizontal scrolling */
   overflow-y: hidden; /* Prevents vertical scrolling */
   height: 3.75rem;
-  max-width: 100%;
-  white-space: nowrap;
+  width: 100%;
 `
 
 export const SMainCheckbox = styled.div`
-  display: inline-flex;
+  display: flex;
+  white-space: nowrap;
 
   width: 100%;
   height: 3.75rem;
