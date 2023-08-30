@@ -36,8 +36,8 @@ export const SLabel = styled.label<$TFilterItem>`
 
   &::before {
     content: '';
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
     display: inline-block;
     border: 1px solid var(--light-gray);
     border-radius: ${({ $type }) => ($type === 'radio' ? '50%' : 0)};
@@ -50,8 +50,8 @@ export const SLabel = styled.label<$TFilterItem>`
     font-family: 'jw-icon';
     position: absolute;
     font-size: 0.625rem;
-    left: 1.2rem;
-    top: 0.2rem;
+    left: 1.3rem;
+    top: 0rem;
     width: 1rem;
     height: 1rem;
     display: inline-block;
