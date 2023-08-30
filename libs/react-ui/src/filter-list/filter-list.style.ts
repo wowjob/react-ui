@@ -15,7 +15,7 @@ export const STitle = styled.h3`
   padding-inline: 1rem;
 `
 
-export const SSpan = styled.label`
+export const SSpan = styled.span`
   font-family: 'Johnnie Walker Sans Headline';
   text-transform: uppercase;
   font-size: 1.25rem;
