@@ -117,7 +117,17 @@ export const SMainCheckboxWrapper = styled.div`
   overflow-x: auto; /* Allows horizontal scrolling */
   overflow-y: hidden; /* Prevents vertical scrolling */
   height: 3.75rem;
-  width: 100%;
+  width: calc(100vw - 3rem);
+
+  /* tablet */
+  @media screen and (min-width: 48rem) {
+    width: 43rem;
+  }
+
+  /* desktop */
+  @media screen and (min-width: 80rem) {
+    width: 73rem;
+  }
 `
 
 export const SMainCheckbox = styled.div`
