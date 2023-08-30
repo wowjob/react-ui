@@ -82,17 +82,17 @@ export const SGridList = styled.div`
   height: 37.5rem;
   background-color: var(--orange);
   margin: 0 auto;
-  padding: 6.25rem 8rem;
   position: relative;
+  padding: 2.5rem 1.5rem;
 
   /* tablet */
   @media screen and (min-width: 48rem) {
-    padding: 6.25rem 4%.75;
+    padding: 6.25rem 4.75rem;
   }
 
   /* desktop */
   @media screen and (min-width: 80rem) {
-    padding: 2.5rem 1.5rem;
+    padding: 6.25rem 8rem;
   }
 `
 
