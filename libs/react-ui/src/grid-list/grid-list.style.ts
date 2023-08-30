@@ -107,7 +107,6 @@ export const SMainCheckboxWrapper = styled.div`
   display: block;
   overflow-x: auto; /* Allows horizontal scrolling */
   overflow-y: hidden; /* Prevents vertical scrolling */
-  position: relative;
   height: 3.75rem;
   max-width: 100%;
   white-space: nowrap;
